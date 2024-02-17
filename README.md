@@ -1,41 +1,47 @@
 # AWS CI Demo - Python Application with Docker
 
+AWS Continuous Integration Demo - aws-ci-demo
+
+Welcome to the AWS Continuous Integration Demo repository! In this guide, we'll walk you through setting up a continuous integration (CI) pipeline for your Python application using AWS CodePipeline and AWS CodeBuild.
+
 ## Continuous Integration (CI) with AWS CodeBuild
 
 This project utilizes AWS CodeBuild for continuous integration, automating the build process whenever changes are pushed to the repository.
 
-### Prerequisites
+Create an AWS CodePipeline
 
-- [AWS CLI](https://aws.amazon.com/cli/) installed for AWS CodeBuild setup.
+Go to the AWS Management Console and navigate to the AWS CodePipeline service.
+Click on the "Create pipeline" button.
+Provide a name for your pipeline and click on the "Next" button.
+For the source stage, select "GitHub" as the source provider.
+Connect your GitHub account to AWS CodePipeline and select your repository.
+Choose the branch you want to use for your pipeline.
+In the build stage, select "AWS CodeBuild" as the build provider.
+Create a new CodeBuild project by clicking on the "Create project" button.
+Configure the CodeBuild project with the necessary settings for your Python application, such as the build environment, build commands, and artifacts.
+Save the CodeBuild project and go back to CodePipeline.
+Continue configuring the pipeline stages, such as deploying your application using AWS Elastic Beanstalk or any other suitable deployment option.
+Review the pipeline configuration and click on the "Create pipeline" button to create your AWS CodePipeline.
+Congratulations! Your CI pipeline is now set up. Let's move on to configuring AWS CodeBuild.
 
-### Setting Up AWS CodeBuild
+Configure AWS CodeBuild
 
-1. Open the [AWS Management Console](https://console.aws.amazon.com/codebuild/).
+In the AWS Management Console, navigate to the AWS CodeBuild service.
+Click on the "Create build project" button.
+Provide a name for your build project.
+For the source provider, choose "AWS CodePipeline."
+Select the pipeline you created in the previous step.
+Configure the build environment, such as the operating system, runtime, and compute resources required for your Python application.
+Specify the build commands, such as installing dependencies and running tests. Customize this based on your application's requirements.
+Set up the artifacts configuration to generate the build output required for deployment.
+Review the build project settings and click on the "Create build project" button to create your AWS CodeBuild project.
+Awesome! AWS CodeBuild is now configured. Let's trigger the CI process.
 
-2. Create a new CodeBuild project:
-   - Click on "Create build project."
-   - Provide a project name and description.
-   - In the "Source" section, choose GitHub as the source provider.
-   - Connect the project to this GitHub repository.
-   - Specify the source version to use (e.g., `main` branch).
+Trigger the CI Process
 
-3. Configure the build settings:
-   - In the "Environment" section, select the environment image with the desired runtime (e.g., Python 3.8).
-   - Use the provided `buildspec.yml` file for build instructions.
-
-4. Set up IAM role permissions:
-   - Ensure the CodeBuild service role has the necessary permissions to access your GitHub repository and other AWS resources.
-
-5. Save the CodeBuild project.
-
-### Triggering the CI Pipeline
-
-The CI pipeline will automatically trigger when changes are pushed to the GitHub repository.
-
-### Monitoring Build Progress
-
-You can monitor the build progress and view logs in the AWS CodeBuild console.
-
-```bash
-# Example AWS CLI command to start a build manually
-aws codebuild start-build --project-name YourCodeBuildProjectName
+Go to your GitHub repository and make a change to your Python application's source code.
+Commit and push your changes to the branch configured in your AWS CodePipeline.
+Head over to the AWS CodePipeline console and navigate to your pipeline.
+You should see the pipeline automatically kick off as soon as it detects the changes in your repository.
+Sit back and relax while AWS CodePipeline takes care of the rest. It will fetch the latest code, trigger the build process with AWS CodeBuild, and deploy the application if you configured the deployment stage.
+That's it! You've successfully set up a continuous integration pipeline for your Python application on AWS. Happy coding!
